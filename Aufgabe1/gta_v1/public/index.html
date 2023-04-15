@@ -22,43 +22,45 @@
     </header>
 
     <main class="main">
-       <section class="main__tagging tagging">
+        <section class="main__tagging tagging">
             <h2>Tagging</h2>
-            
+
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <fieldset>
                 <legend><b>Add a new GeoTag</b></legend>
-            <form id="tag-form" action="/tagging" method="post">
-            </br> 
-                <!-- ... your code here ... -->
-                Latitude:
-            </br> 
-                <input type="number" id="latitude_box" placeholder="e.g. 49.01379">
-            </br> 
-        </br> 
-                Longitude:
-            </br> 
+                <form id="tag-form" action="/tagging" method="post">
+                    </br>
+                    <!-- ... your code here ... -->
 
-                <input type="number"  id="longitude_box" placeholder="e.g. 8.390071" >
-            </br> 
-        </br> 
+                    </br>
+                    <label for="Latitude">Latitude:</label>
+                    </br>
+                    <input type="number" id="latitude_box" placeholder="e.g. 49.01379">
 
-                Name:
-            </br> 
+                    </br>
+                    </br>
 
-                <input type="text"  id="name_box" placeholder="e.g. Central Berlin">
-            </br> 
-        </br> 
-                Hashtag:
-            </br> 
 
-                <input type="text"  id="hashtag_box" placeholder="e.g. #ber">
-            </br> 
-        </br> 
-            <input type="submit" value="Submit">  
-        </fieldset>
-           
+                    <label for="Longitude">Longitude:</label>
+                    </br>
+                    <input type="number" id="longitude_box" placeholder="e.g. 8.390071">
+                    </br>
+                    </br>
+                    <label for="Name">Name:</label>
+                    </br>
+
+                    <input type="text" id="name_box" placeholder="e.g. Central Berlin">
+                    </br>
+                    </br>
+                    <label for="Hashtag">Hashtag:</label>
+                    </br>
+
+                    <input type="text" id="hashtag_box" placeholder="e.g. #ber">
+                    </br>
+                    </br>
+                    <input type="submit" value="Submit">
+            </fieldset>
 
 
             </form>
@@ -75,16 +77,17 @@
             <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
 
                 <!-- ... your code here ... -->
-                
-                
+
+
                 <fieldset>
                     <legend><b>Search</b></legend>
-                    
-                    Search term or keywords:
                     <br>
-                <input type="text" placeholder="e.g. Berlin" id="search_box">
-                <br>
-                <input type="submit" value="Submit">
+                    <label for="Search term or keywords">Search term or keywords:</label>
+                    </br>
+                    <input type="text" placeholder="e.g. Berlin" id="search_box">
+                    <br>
+                    <br>
+                    <input type="submit" value="Submit">
                 </fieldset>
 
             </form>
