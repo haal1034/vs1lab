@@ -1,7 +1,6 @@
 # VS1lab - Laborübungen Verteilte Systeme 1 TEEEEEEEEEEEEEEEEEEEEEEEEEEST
 
 Klappt git? -Felix
-Ja, klappt super! -Sebbi
 
 Ziel des Labors ist die praktische Anwendung verschiedener Web Technologien aus der Vorlesung. Dazu wird in mehreren Schritten eine komplette Web Anwendung erstellt. In jedem Schritt wird jeweils ein Bereich von Web Technologien genauer betrachtet.
 
