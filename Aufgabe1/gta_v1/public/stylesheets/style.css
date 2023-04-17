@@ -47,6 +47,27 @@ a {
 /* ### TODO ### Styles for other HTML elements */
 
 /* ... your code here ... */
+#imagemap{
+  position:relative;
+  left: 20px;
+  top: 20px;
+  width: 5%;
+  height:auto;
+}
+
+#headertitle{
+  position:relative;
+  left: 500px;
+  top:-20px;
+  font-size: 70 ;
+}
+
+#navigation{
+  position:relative;
+  left:1000px;
+  top:-45px;
+}
+
 
 
 /* Grid styles (no changes required) */
