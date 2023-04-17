@@ -47,6 +47,12 @@ a {
 /* ### TODO ### Styles for other HTML elements */
 
 /* ... your code here ... */
+main, .flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
 #imagemap{
   position:relative;
   left: 20px;
