@@ -43,29 +43,37 @@ body {
 a {
   color: var(--link-color);
 }
+.header{
+  background-color: #cdcdcd;
+}
 
 /* ### TODO ### Styles for other HTML elements */
 
 /* ... your code here ... */
+.flex-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-container > div{
+  padding:10px;
+  margin: 30px;
+}
 #imagemap{
   position:relative;
-  left: 20px;
-  top: 20px;
-  width: 5%;
+  width: 30px;
   height:auto;
 }
 
 #headertitle{
-  position:relative;
-  left: 500px;
-  top:-20px;
+  position: relative;
   font-size: 70 ;
 }
 
 #navigation{
   position:relative;
-  left:1000px;
-  top:-45px;
+  
+  
 }
 
 
