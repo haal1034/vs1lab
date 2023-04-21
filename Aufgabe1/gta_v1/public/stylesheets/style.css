@@ -111,7 +111,7 @@ a {
 /* ### TODO ### Styles for Header Component */
 
 .header{
-  background-color: #cdcdcd;
+  background-color: #eeeeef;
 }
 .flex-container{
   display: flex;
@@ -180,7 +180,7 @@ a {
 
 .discovery__search * {
   margin-left: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .discovery__search input[type="submit"] {
@@ -193,6 +193,12 @@ a {
   padding: 0.5rem;
 }
 
+.discovery__wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
 .discovery__results{
   padding:0;
   margin-left: 1rem;
@@ -200,11 +206,12 @@ a {
   list-style-type: none;
 }
 .discovery__results li{
-  background-color:#cdcdcd;
-  padding: 0.5rem;
+  background-color:#eeeeef;
+  padding: 1rem;
   margin-left: 0.5rem;
   margin-bottom: 0.5rem;
   color:#00B7FF;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -217,7 +224,7 @@ a {
 /* ### TODO ### Styles for Footer Component */
 
 .footer{
-  background-color: #cdcdcd;
+  background-color: #eeeeef;
   padding: 2rem;
 }
 
