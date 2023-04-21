@@ -43,38 +43,12 @@ body {
 a {
   color: var(--link-color);
 }
-.header{
-  background-color: #cdcdcd;
-}
+
 
 /* ### TODO ### Styles for other HTML elements */
 
 /* ... your code here ... */
-.flex-container{
-  display: flex;
-  justify-content: space-between;
-}
 
-.flex-container > div{
-  padding:10px;
-  margin: 30px;
-}
-#imagemap{
-  position:relative;
-  width: 30px;
-  height:auto;
-}
-
-#headertitle{
-  position: relative;
-  font-size: 70 ;
-}
-
-#navigation{
-  position:relative;
-  
-  
-}
 
 
 
@@ -139,11 +113,43 @@ a {
 /* ### TODO ### Styles for Header Component */
 
 /* ... your code here ... */
+.header{
+  background-color: #cdcdcd;
+}
+.flex-container{
+  display: flex;
+  justify-content: space-between;
+}
 
+.flex-container > div{
+  padding:10px;
+  margin: 30px;
+}
+#imagemap{
+  position:relative;
+  width: 30px;
+  height:auto;
+}
+
+#headertitle{
+  position: relative;
+  font-size: 70 ;
+}
+
+#navigation{
+  position:relative;
+    
+}
 
 /* ### TODO ### Styles for Main Component */
 
 /* ... your code here ... */
+.main{
+  display:flex;
+  flex-direction: row;
+  flex: 1;
+  padding: 1rem;
+}
 
 
 /* ### TODO ### Styles for Tagging component */
@@ -155,12 +161,32 @@ a {
 
 /* ... your code here ... */
 
+.discovery__results{
+  padding:0;
+  margin-bottom: 1rem;
+  list-style-type: none;
+}
+.discovery__results li{
+  background-color:#cdcdcd;
+  padding: 0.5rem;
+  margin-bottom: o.5rem;
+  color:#00B7FF;
+  cursor: pointer;
+}
+
+.discovery_map{
+  position: relative;
+}
+
 
 /* ### TODO ### Styles for Footer Component */
 
 /* ... your code here ... */
-
+.footer{
+  background-color: #cdcdcd;
+  padding: 2rem;
+}
 
 /* ### TODO ### Media Queries */
 
-/* ... your code here ... */
+/* ... your code here ... */6
