@@ -110,39 +110,40 @@ a {
 
 /* ### TODO ### Styles for Header Component */
 
-.header{
+.header {
   background-color: #eeeeef;
 }
-.flex-container{
+
+.flex-container {
   display: flex;
   justify-content: space-between;
 }
 
-.flex-container > div{
-  padding:10px;
+.flex-container>div {
+  padding: 10px;
   margin: 30px;
 }
 
-#imagemap{
-  position:relative;
-  width: 30px;
-  height:auto;
-}
-
-#headertitle{
+#imagemap {
   position: relative;
-  font-size: 70 ;
+  width: 30px;
+  height: auto;
 }
 
-#navigation{
-  position:relative;
-    
+#headertitle {
+  position: relative;
+  font-size: 70;
+}
+
+#navigation {
+  position: relative;
+
 }
 
 /* ### TODO ### Styles for Main Component */
 
-.main{
-  display:flex;
+.main {
+  display: flex;
   flex-direction: row;
   flex: 1;
   padding: 1rem;
@@ -199,23 +200,24 @@ a {
   flex-grow: 1;
 }
 
-.discovery__results{
-  padding:0;
+.discovery__results {
+  padding: 0;
   margin-left: 1rem;
   margin-bottom: 1rem;
   list-style-type: none;
 }
-.discovery__results li{
-  background-color:#eeeeef;
+
+.discovery__results li {
+  background-color: #eeeeef;
   padding: 1rem;
   margin-left: 0.5rem;
   margin-bottom: 0.5rem;
-  color:#00B7FF;
+  color: #00B7FF;
   font-weight: bold;
   cursor: pointer;
 }
 
-.discovery__map{
+.discovery__map {
   margin-left: 1.5rem;
   position: relative;
 }
@@ -223,11 +225,26 @@ a {
 
 /* ### TODO ### Styles for Footer Component */
 
-.footer{
+.footer {
   background-color: #eeeeef;
   padding: 2rem;
 }
 
 /* ### TODO ### Media Queries */
+
+@media screen and (max-width: 850px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .main__tagging,
+  .main__discovery {
+    width: 100%;
+    flex-direction: column;
+  }
+  .discovery__wrapper{
+  flex-direction: column;
+}
+}
 
 /* ... your code here ... */
