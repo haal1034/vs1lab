@@ -47,8 +47,6 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
-/* ... your code here ... */
-
 
 /* Grid styles (no changes required) */
 
@@ -147,6 +145,7 @@ a {
   flex-direction: row;
   flex: 1;
   padding: 1rem;
+  margin: 0 auto;
 }
 
 
@@ -246,5 +245,3 @@ a {
   flex-direction: column;
 }
 }
-
-/* ... your code here ... */
