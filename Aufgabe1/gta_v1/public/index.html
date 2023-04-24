@@ -14,13 +14,19 @@
 
 <body>
     <header class="header">
-        <fieldset>
-        <img src="./images/location.png" class="header__image" alt="an image of a map and location" id="imagemap">
-        <h1 id="headertitle" class="header__title">GeoTagApp</h1>
-        <nav class="header__navigation" id="navigation">
+        <img src="./images/location.png" 
+        class="header__image" 
+        alt="an image of a map and location" 
+        widht="50" 
+        height="50"   
+         
+        .flex-container{
+            display: flex;}>
+        <h1 align="center">GeoTagApp</h1>
+        <nav class="header__navigation">
             <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
         </nav>
-    </fieldset>
+
     </header>
 
     <main class="main">
@@ -38,21 +44,26 @@
                     </br>
                     <label for="Latitude">Latitude:</label>
                     </br>
-                    <input type="number" id="latitude_box" placeholder="e.g. 49.01379" readonly>
+                    <input type="number" id="latitude_box" placeholder="e.g. 49.01379">
+
                     </br>
                     </br>
+
+
                     <label for="Longitude">Longitude:</label>
                     </br>
-                    <input type="number" id="longitude_box" placeholder="e.g. 8.390071" readonly>
+                    <input type="number" id="longitude_box" placeholder="e.g. 8.390071">
                     </br>
                     </br>
                     <label for="Name">Name:</label>
                     </br>
+
                     <input type="text" id="name_box" placeholder="e.g. Central Berlin" maxlength="10" required>
                     </br>
                     </br>
                     <label for="Hashtag">Hashtag:</label>
                     </br>
+
                     <input type="text" id="hashtag_box" placeholder="e.g. #ber" pattern="#.{0,10}" required>
                     </br>
                     </br>
@@ -83,8 +94,6 @@
                     </br>
                     <input type="text" placeholder="e.g. Berlin" id="search_box">
                     <br>
-                    <input type="hidden" id="latitude_box" placeholder="e.g. 49.01379" readonly>
-                    <input type="hidden" id="longitude_box" placeholder="e.g. 8.390071" readonly>
                     <br>
                     <input type="submit" value="Submit">
                 </fieldset>
