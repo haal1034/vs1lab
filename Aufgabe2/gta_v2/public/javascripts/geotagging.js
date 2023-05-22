@@ -104,10 +104,23 @@ class MapManager {
  */
 // ... your code here ...
 function updateLocation (){
-    
+ // Get the current location using the LocationHelper class.
+ LocationHelper.findLocation((location) => {
+    // Update the latitude and longitude values in the Tagging and Discovery sections.
+    document.getElementById("latitude_box").value = location.latitude;
+    document.getElementById("longitude_box").value = location.longitude;
+
+    // Get the map URL using the MapManager class.
+    const mapManager = new MapManager("ZhW8DBs08y2UnuQno5jfjSTbKDrSeoUd");
+    const mapUrl = mapManager.getMapUrl(location.latitude, location.longitude);
+
+    // Get the map image element from the DOM.
+    const mapImage = document.getElementById("mapView");
+
+    // Set the map URL in the map image element.
+    mapImage.src = mapUrl;
+  });
 }
 
 // Wait for the page to fully load its DOM content, then call updateLocation
-document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
-});
+document.addEventListener("DOMContentLoaded", updateLocation);
