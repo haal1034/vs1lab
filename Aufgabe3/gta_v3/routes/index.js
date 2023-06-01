@@ -90,4 +90,10 @@ router.post('/tagging', (req, res) => {
 
 // TODO: ... your code here ...
 
+router.post('/discovery', (req, res) => {
+  const latitude = req.body.latitude_hidden;
+  const longitude = req.body.longitude_hidden;
+  const searchTerm = req.body.search;
+  res.render('index', { taglist: tagStorage.searchNearbyGeoTags(latitude, longitude, 100, searchTerm) });
+});
 module.exports = router;
