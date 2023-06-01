@@ -20,10 +20,10 @@ class MapManager {
      * @param {number} latitude The map center latitude
      * @param {number} longitude The map center longitude
      * @param {{latitude, longitude, name}[]} tags The map tags, defaults to just the current location
-     * @param {number} zoom The map zoom, defaults to 11
+     * @param {number} zoom The map zoom, defaults to 14
      * @returns {string} URL of generated map
      */
-    getMapUrl(latitude, longitude, tags = [], zoom = 11) {
+    getMapUrl(latitude, longitude, tags = [], zoom = 14) {
         if (!this.#apiKey) {
             console.log("No API key provided.");
             return "images/mapview.jpg";
