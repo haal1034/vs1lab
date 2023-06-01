@@ -30,6 +30,7 @@ const GeoTag = require('../models/geotag');
  */
 // eslint-disable-next-line no-unused-vars
 const GeoTagStore = require('../models/geotag-store');
+const tagStorage = new GeoTagStore();
 
 /**
  * Route '/' for HTTP 'GET' requests.
@@ -42,7 +43,7 @@ const GeoTagStore = require('../models/geotag-store');
 
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  res.render('index', { taglist: [] })
+  res.render('index', { taglist: tagStorage.tagList })
 });
 
 /**
@@ -60,7 +61,12 @@ router.get('/', (req, res) => {
  * by radius around a given location.
  */
 
-// TODO: ... your code here ...
+router.post('/tagging', (req, res) => {
+  const tag = new GeoTag(req.body.name, req.body.latitude, req.body.longitude, req.body.hashtag);
+  tagStorage.addGeoTag(tag);
+  console.log("Saved" + tag.name + ", " + tag.hashtag + ", " + tag.latitude + " " + tag.longitude);
+  res.render('index', { taglist: tagStorage.getNearbyGeoTags(tag.latitude, tag.longitude, 1000000) });
+});
 
 /**
  * Route '/discovery' for HTTP 'POST' requests.
