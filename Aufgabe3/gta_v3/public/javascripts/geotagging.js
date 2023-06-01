@@ -107,8 +107,10 @@ function updateLocation (){
  // Get the current location using the LocationHelper class.
  LocationHelper.findLocation((location) => {
     // Update the latitude and longitude values in the Tagging and Discovery sections.
-    document.getElementById("latitude_box").value = location.latitude;
-    document.getElementById("longitude_box").value = location.longitude;
+    document.getElementById("latitude").value = location.latitude;
+    document.getElementById("longitude").value = location.longitude;
+    document.getElementById("latitude_hidden").value = location.latitude;
+    document.getElementById("longitude_hidden").value = location.longitude;
 
     // Get the map URL using the MapManager class.
     const mapManager = new MapManager("ZhW8DBs08y2UnuQno5jfjSTbKDrSeoUd");

@@ -42,24 +42,24 @@
                 <legend><b>Add a new GeoTag</b></legend>
                 <form id="tag-form" action="/tagging" method="post">
                     </br>
-                    <label for="Latitude">Latitude:</label>
+                    <label for="latitude">Latitude:</label>
                     </br>
-                    <input type="number" id="latitude_box" placeholder="e.g. 49.01379" readonly>
-                    </br>
-                    </br>
-                    <label for="Longitude">Longitude:</label>
-                    </br>
-                    <input type="number" id="longitude_box" placeholder="e.g. 8.390071" readonly>
+                    <input type="number" id="latitude" name="latitude" placeholder="e.g. 49.01379" readonly>
                     </br>
                     </br>
-                    <label for="Name">Name:</label>
+                    <label for="longitude">Longitude:</label>
                     </br>
-                    <input type="text" id="name_box" placeholder="e.g. Central Berlin" maxlength="10" required>
+                    <input type="number" id="longitude" name="longitude" placeholder="e.g. 8.390071" readonly>
                     </br>
                     </br>
-                    <label for="Hashtag">Hashtag:</label>
+                    <label for="name">Name:</label>
                     </br>
-                    <input type="text" id="hashtag_box" placeholder="e.g. #ber" pattern="#.{0,10}" required>
+                    <input type="text" id="name" name="name" placeholder="e.g. Central Berlin" maxlength="10" required>
+                    </br>
+                    </br>
+                    <label for="hashtag">Hashtag:</label>
+                    </br>
+                    <input type="text" id="hashtag" name="hashtag" placeholder="e.g. #ber" pattern="#.{0,10}" required>
                     </br>
                     </br>
                     <input type="submit" value="Add Tag">
@@ -82,12 +82,12 @@
                 <fieldset>
                     <legend><b>Search</b></legend>
                     <br>
-                    <label for="Search term or keywords">Search term or keywords:</label>
+                    <label for="search">Search term or keywords:</label>
                     </br>
-                    <input type="text" placeholder="e.g. Berlin" id="search_box">
+                    <input type="text" placeholder="e.g. Berlin" id="search" name="search">
                     <br>
-                    <input type="hidden" id="latitude_box" placeholder="e.g. 49.01379" readonly>
-                    <input type="hidden" id="longitude_box" placeholder="e.g. 8.390071" readonly>
+                    <input type="hidden" id="latitude_hidden" name="latitude_hidden" placeholder="e.g. 49.01379" readonly>
+                    <input type="hidden" id="longitude_hidden" name="longitude_hidden" placeholder="e.g. 8.390071" readonly>
                     <br>
                     <input type="submit" value="Search">
                 </fieldset>

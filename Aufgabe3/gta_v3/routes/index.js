@@ -61,11 +61,15 @@ router.get('/', (req, res) => {
  * by radius around a given location.
  */
 
+// TODO: Replace tagStorage.tagList with nerbyTags function call
 router.post('/tagging', (req, res) => {
-  const tag = new GeoTag(req.body.name, req.body.latitude, req.body.longitude, req.body.hashtag);
-  tagStorage.addGeoTag(tag);
-  console.log("Saved" + tag.name + ", " + tag.hashtag + ", " + tag.latitude + " " + tag.longitude);
-  res.render('index', { taglist: tagStorage.getNearbyGeoTags(tag.latitude, tag.longitude, 1000000) });
+  const name = req.body.name;
+  const latitude = req.body.latitude;
+  const longitude = req.body.longitude;
+  const hashtag = req.body.hashtag;
+
+  tagStorage.addGeoTag(name, latitude, longitude, hashtag);
+  res.render('index', { taglist: tagStorage.getNearbyGeoTags(latitude, longitude, 100) });
 });
 
 /**
