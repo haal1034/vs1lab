@@ -86,7 +86,15 @@ router.get('/', (req, res) => {
  * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
  */
 
-// TODO: ... your code here ...
+router.get('/api/geotags', (req, res) => {
+  const filter = req.query.filter; // Nehmen Sie den Filter-Parameter aus der URL
+
+  // Führen Sie die erforderlichen Aktionen aus, um GeoTags basierend auf dem Filter zu suchen
+  const filteredGeoTags = geoTagStore.searchNearbyGeoTags(0, 0, Infinity, filter);
+
+  // Senden Sie die Antwort mit den gefundenen GeoTags als JSON-Array
+  res.json(filteredGeoTags);
+});
 
 
 /**
@@ -100,7 +108,16 @@ router.get('/', (req, res) => {
  * The new resource is rendered as JSON in the response.
  */
 
-// TODO: ... your code here ...
+// Route zum Anlegen neuer GeoTags
+router.post('/api/geotags', (req, res) => {
+  const newGeoTag = req.body; // Nehmen Sie die JSON-Daten aus dem Request-Body
+
+  // Führen Sie die erforderlichen Aktionen aus, um einen neuen GeoTag zu erstellen
+  geoTagStore.addGeoTag(newGeoTag.name, newGeoTag.latitude, newGeoTag.longitude, newGeoTag.hashtag);
+
+  // Senden Sie die Antwort mit dem Statuscode 201 und der URI des erstellten GeoTags
+  res.status(201).location(`/api/geotags/${newGeoTag.name}`).json(newGeoTag);
+});
 
 
 /**
@@ -113,7 +130,21 @@ router.get('/', (req, res) => {
  * The requested tag is rendered as JSON in the response.
  */
 
-// TODO: ... your code here ...
+// Route zum Lesen einer einzelnen GeoTag-Ressource
+router.get('/api/geotags/:name', (req, res) => {
+  const name = req.params.name; // Nehmen Sie den Namen des GeoTags aus der URL
+
+  // Führen Sie die erforderlichen Aktionen aus, um den GeoTag mit dem angegebenen Namen zu lesen
+  const geoTag = geoTagStore.tagList.find(tag => tag.name === name);
+
+  if (geoTag) {
+    // Senden Sie die Antwort mit dem gefundenen GeoTag als JSON
+    res.json(geoTag);
+  } else {
+    // Senden Sie eine Fehlerantwort mit dem Statuscode 404, wenn der GeoTag nicht gefunden wurde
+    res.status(404).json({ error: 'GeoTag not found' });
+  }
+});
 
 
 /**
@@ -130,7 +161,22 @@ router.get('/', (req, res) => {
  * The updated resource is rendered as JSON in the response. 
  */
 
-// TODO: ... your code here ...
+router.put('/api/geotags/:name', (req, res) => {
+  const name = req.params.name; // Nehmen Sie den Namen des GeoTags aus der URL
+  const updatedGeoTag = req.body; // Nehmen Sie die JSON-Daten aus dem Request-Body
+
+  // Führen Sie die erforderlichen Aktionen aus, um den GeoTag mit dem angegebenen Namen zu aktualisieren
+  const geoTagIndex = geoTagStore.tagList.findIndex(tag => tag.name === name);
+
+  if (geoTagIndex !== -1) {
+    geoTagStore.tagList[geoTagIndex] = updatedGeoTag;
+    // Senden Sie die Antwort mit dem aktualisierten GeoTag als JSON
+    res.json(updatedGeoTag);
+  } else {
+    // Senden Sie eine Fehlerantwort mit dem Statuscode 404, wenn der GeoTag nicht gefunden wurde
+    res.status(404).json({ error: 'GeoTag not found' });
+  }
+});
 
 
 /**
@@ -144,6 +190,20 @@ router.get('/', (req, res) => {
  * The deleted resource is rendered as JSON in the response.
  */
 
-// TODO: ... your code here ...
+router.delete('/api/geotags/:name', (req, res) => {
+  const name = req.params.name; // Nehmen Sie den Namen des GeoTags aus der URL
+
+  // Führen Sie die erforderlichen Aktionen aus, um den GeoTag mit dem angegebenen Namen zu löschen
+  const geoTagIndex = geoTagStore.tagList.findIndex(tag => tag.name === name);
+
+  if (geoTagIndex !== -1) {
+    geoTagStore.tagList.splice(geoTagIndex, 1);
+    // Senden Sie eine Erfolgsantwort mit dem Statuscode 204 (No Content)
+    res.sendStatus(204);
+  } else {
+    // Senden Sie eine Fehlerantwort mit dem Statuscode 404, wenn der GeoTag nicht gefunden wurde
+    res.status(404).json({ error: 'GeoTag not found' });
+  }
+});
 
 module.exports = router;
