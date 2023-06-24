@@ -87,10 +87,10 @@ router.get('/', (req, res) => {
  */
 
 router.get('/api/geotags', (req, res) => {
-  const filter = req.query.filter; // Nehmen Sie den Filter-Parameter aus der URL
+  let filter = req.query.filter; // Nehmen Sie den Filter-Parameter aus der URL
 
   // Führen Sie die erforderlichen Aktionen aus, um GeoTags basierend auf dem Filter zu suchen
-  const filteredGeoTags = geoTagStore.searchNearbyGeoTags(0, 0, Infinity, filter);
+  let filteredGeoTags = tagStorage.searchNearbyGeoTags(48,98770, 8,38080, 1000, "Castle");
 
   // Senden Sie die Antwort mit den gefundenen GeoTags als JSON-Array
   res.json(filteredGeoTags);
@@ -113,7 +113,7 @@ router.post('/api/geotags', (req, res) => {
   const newGeoTag = req.body; // Nehmen Sie die JSON-Daten aus dem Request-Body
 
   // Führen Sie die erforderlichen Aktionen aus, um einen neuen GeoTag zu erstellen
-  geoTagStore.addGeoTag(newGeoTag.name, newGeoTag.latitude, newGeoTag.longitude, newGeoTag.hashtag);
+  tagStorage.addGeoTag(newGeoTag.name, newGeoTag.latitude, newGeoTag.longitude, newGeoTag.hashtag);
 
   // Senden Sie die Antwort mit dem Statuscode 201 und der URI des erstellten GeoTags
   res.status(201).location(`/api/geotags/${newGeoTag.name}`).json(newGeoTag);
@@ -135,7 +135,7 @@ router.get('/api/geotags/:name', (req, res) => {
   const name = req.params.name; // Nehmen Sie den Namen des GeoTags aus der URL
 
   // Führen Sie die erforderlichen Aktionen aus, um den GeoTag mit dem angegebenen Namen zu lesen
-  const geoTag = geoTagStore.tagList.find(tag => tag.name === name);
+  const geoTag = tagStorage.tagList.find(tag => tag.name === name);
 
   if (geoTag) {
     // Senden Sie die Antwort mit dem gefundenen GeoTag als JSON
@@ -166,10 +166,10 @@ router.put('/api/geotags/:name', (req, res) => {
   const updatedGeoTag = req.body; // Nehmen Sie die JSON-Daten aus dem Request-Body
 
   // Führen Sie die erforderlichen Aktionen aus, um den GeoTag mit dem angegebenen Namen zu aktualisieren
-  const geoTagIndex = geoTagStore.tagList.findIndex(tag => tag.name === name);
+  const geoTagIndex = tagStorage.tagList.findIndex(tag => tag.name === name);
 
   if (geoTagIndex !== -1) {
-    geoTagStore.tagList[geoTagIndex] = updatedGeoTag;
+    tagStorage.tagList[geoTagIndex] = updatedGeoTag;
     // Senden Sie die Antwort mit dem aktualisierten GeoTag als JSON
     res.json(updatedGeoTag);
   } else {
@@ -194,10 +194,10 @@ router.delete('/api/geotags/:name', (req, res) => {
   const name = req.params.name; // Nehmen Sie den Namen des GeoTags aus der URL
 
   // Führen Sie die erforderlichen Aktionen aus, um den GeoTag mit dem angegebenen Namen zu löschen
-  const geoTagIndex = geoTagStore.tagList.findIndex(tag => tag.name === name);
+  const geoTagIndex = tagStorage.tagList.findIndex(tag => tag.name === name);
 
   if (geoTagIndex !== -1) {
-    geoTagStore.tagList.splice(geoTagIndex, 1);
+    tagStorage.tagList.splice(geoTagIndex, 1);
     // Senden Sie eine Erfolgsantwort mit dem Statuscode 204 (No Content)
     res.sendStatus(204);
   } else {
