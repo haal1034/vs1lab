@@ -16,7 +16,33 @@ console.log("The geoTagging script is going to start...");
  * It is called once the page has been fully loaded.
  */
 // ... your code here ...
+
+document.addEventListener("click", updateLocation);
+var url = "http.//localhost:3000/api/geotags";
+fetch(url, {
+   
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+})
+
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+
+
+fetch(url, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+})
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+
+
 function updateLocation() {
+
     const mapManager = new MapManager("ZhW8DBs08y2UnuQno5jfjSTbKDrSeoUd");
 
     //Get lat and long fields
