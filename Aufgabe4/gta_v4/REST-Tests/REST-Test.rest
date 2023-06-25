@@ -9,6 +9,25 @@ GET http://localhost:3000/api/geotags
 
 ###
 
+//Get geotags by name
+GET http://localhost:3000/api/geotags?name=IWI
+
+####
+
+//Get geotags by latitude and longitude
+GET http://localhost:3000/api/geotags?latitude=48.98770&longitude=8.38080
+
+###
+
+//Get geotags by latitude, longitude and name (is defined)
+GET http://localhost:3000/api/geotags?name=Building E&latitude=49.014993&longitude=8.390049
+###
+
+//Get geotags by latitude, longitude and name (is undefined)
+GET http://localhost:3000/api/geotags?name=camp&latitude=48.98770&longitude=8.38080
+
+###
+
 //Create geotag
 POST http://localhost:3000/api/geotags
 content-type: application/json
@@ -42,14 +61,3 @@ content-type: application/json
 
 //Delete geotag
 DELETE http://localhost:3000/api/geotags/test
-
-###
-
-//Get geotags by latitude and longitude
-GET http://localhost:3000/api/geotags?latitude=48.98770&longitude=8.38080
-
-###
-
-//Get geotags by name and latitude and longitude ("camp" in this case)
-GET http://localhost:3000/api/geotags?name=camp&latitude=48.98770&longitude=8.38080
-
