@@ -1,0 +1,55 @@
+//Homepage
+GET http://localhost:3000/
+content-type: application/json
+
+###
+
+//All geotags
+GET http://localhost:3000/api/geotags
+
+###
+
+//Create geotag
+POST http://localhost:3000/api/geotags
+content-type: application/json
+
+{
+    "latitude": "420",
+    "longitude": "69",
+    "name": "test",
+    "hashtag": "#test"
+}
+
+###
+
+//Get single geotag
+GET http://localhost:3000/api/geotags/test
+
+###
+
+//Update geotag
+PUT http://localhost:3000/api/geotags/test
+content-type: application/json
+
+{
+    "latitude": "49",
+    "longitude": "49",
+    "name": "test",
+    "hashtag": "#test"
+}
+
+###
+
+//Delete geotag
+DELETE http://localhost:3000/api/geotags/test
+
+###
+
+//Get geotags by latitude and longitude
+GET http://localhost:3000/api/geotags?latitude=48.98770&longitude=8.38080
+
+###
+
+//Get geotags by name and latitude and longitude ("camp" in this case)
+GET http://localhost:3000/api/geotags?name=camp&latitude=48.98770&longitude=8.38080
+

@@ -1,9 +1,0 @@
-PUT http://localhost:3000/api/geotags/test3
-content-type: application/json
-
-{
-    "latitude": "49",
-    "longitude": "49",
-    "name": "test",
-    "hashtag": "#test"
-}
