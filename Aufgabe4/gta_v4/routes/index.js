@@ -92,7 +92,7 @@ router.get('/api/geotags', (req, res) => {
     const latitude = req.query.latitude;
     const longitude = req.query.longitude;
 
-    if(name !== undefined&&latitude===undefined||longitude===undefined) {
+    if(name !== undefined) {
     filteredGeoTags = tagStorage.searchNearbyGeoTags(49.013790, 8.404435, 10000000000, name);   
     }else if(latitude!==undefined||longitude!==undefined){
       filteredGeoTags = tagStorage.searchNearbyGeoTags(latitude, longitude, 100000, name);   
