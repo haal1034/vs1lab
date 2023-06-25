@@ -9,61 +9,114 @@
 // Try to find this output in the browser...
 console.log("The geoTagging script is going to start...");
 
+const taggingButton = document.getElementById("taggingButton");
+const discoveryButton = document.getElementById("discoveryButton");
 
-/**
- * TODO: 'updateLocation'
- * A function to retrieve the current location and update the page.
- * It is called once the page has been fully loaded.
- */
-// ... your code here ...
+taggingButton.addEventListener("click", handleTaggingButtonClick);
+discoveryButton.addEventListener("click", handleDiscoveryButtonClick);
+
+
+async function handleTaggingButtonClick() {
+    event.preventDefault();
+    const form = document.getElementById('tag-form');
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+    const name = document.getElementById("name").value;
+    const latitude = document.getElementById("latitude").value;
+    const longitude = document.getElementById("longitude").value;
+    const hashtag = document.getElementById("hashtag").value;
+
+    const response = await fetch(`/api/geotags`, {
+        method: "post",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            latitude: latitude,
+            longitude: longitude,
+            hashtag: hashtag
+        })
+    });
+    const data = await response.json();
+    console.log(response);
+    let geotaglist;
+
+    fetch('/api/geotags')
+        .then(response => response.json())
+        .then(data => {
+            geotaglist = data;
+            refreshElements(geotaglist);
+        });
+}
+
+async function handleDiscoveryButtonClick() {
+    event.preventDefault();
+    const form = document.getElementById('discoveryFilterForm');
+    if (!form.checkValidity()) {
+        form.reportValidity();
+    }
+    const name = document.getElementById("search").value;
+    const latitude = document.getElementById("latitude").value;
+    const longitude = document.getElementById("longitude").value;
+
+    const url = `/api/geotags?name=${name}&latitude=${latitude}&longitude=${longitude}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            refreshElements(data);
+            console.log(data);
+        });
+}
+
+function refreshElements(geotaglist) {
+    const ul = document.getElementById('discoveryResults');
+    ul.innerHTML = "";
+    for (const tag of geotaglist) {
+        const li = document.createElement("li");
+        li.textContent = `${tag.name} (${tag.latitude},${tag.longitude}) ${tag.hashtag}`;
+        ul.appendChild(li);
+    }
+    const mapviewdata = document.getElementById("mapView");
+    mapviewdata.setAttribute("data-tags", JSON.stringify(geotaglist));
+    updateLocation();
+}
+
+
 function updateLocation() {
     const mapManager = new MapManager("ZhW8DBs08y2UnuQno5jfjSTbKDrSeoUd");
 
-    //Get lat and long fields
     const latitudeBox = document.getElementById("latitude");
     const longitudeBox = document.getElementById("longitude");
     const latitudeBoxHidden = document.getElementById("latitude_hidden");
     const longitudeBoxHidden = document.getElementById("longitude_hidden");
 
-    // Get the map image element from the DOM.
     const mapImage = document.getElementById("mapView");
 
     var latitude = latitudeBox.value;
     var longitude = longitudeBox.value;
 
-    // Checks DOM if latitude and lognitude are empty
     if (latitude === "" && longitude === "") {
         LocationHelper.findLocation((location) => {
-            // Sets found location
             latitude = location.latitude;
             longitude = location.longitude;
-
-            // Update the latitude and longitude values in the Tagging and Discovery sections.
             latitudeBox.value = latitude;
             longitudeBox.value = longitude;
             latitudeBoxHidden.value = latitude;
             longitudeBoxHidden.value = longitude;
-
-            // Get the map URL using the MapManager class.
             const mapUrl = mapManager.getMapUrl(latitude, longitude, JSON.parse(document.getElementById("mapView").getAttribute("data-tags")));
-
-            // Set the map URL in the map image element.
             mapImage.src = mapUrl;
         });
     } else {
-        // Update the latitude and longitude values in the Tagging and Discovery sections.
         latitudeBox.value = latitude;
         longitudeBox.value = longitude;
         latitudeBoxHidden.value = latitude;
         longitudeBoxHidden.value = longitude;
-
-        // Get the map URL using the MapManager class.
         const mapUrl = mapManager.getMapUrl(latitude, longitude, JSON.parse(document.getElementById("mapView").getAttribute("data-tags")));
-
-        // Set the map URL in the map image element.
         mapImage.src = mapUrl;
     }
 }
-
-// Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", updateLocation);
