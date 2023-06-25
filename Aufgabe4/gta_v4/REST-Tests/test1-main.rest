@@ -1,0 +1,43 @@
+GET http://localhost:3000/
+content-type: application/json
+
+
+POST http://localhost:3000/tagging
+content-type: application/json
+
+{
+    "latitude": "49",
+    "longitude": "49",
+    "name": "test",
+    "hashtag": "#test"
+
+}
+
+POST http://localhost:3000/api/geotags
+content-type: application/json
+
+{
+    "latitude": "49",
+    "longitude": "49",
+    "name": "test21321",
+    "hashtag": "#test21312"
+
+}
+
+POST http://localhost:3000/api/geotags/:name
+content-type: application/json
+
+{
+    "name": "IWI",
+}
+
+DELETE http://localhost:3000/api/geotags/IWI
+
+DELETE http://localhost:3000/api/geotags/Castle
+
+GET http://localhost:3000/api/geotags
+
+GET http://localhost:3000/api/geotags/Castle
+content-type: application/json
+
+GET http://localhost:3000/api/geotags/Building F

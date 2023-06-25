@@ -1,0 +1,1 @@
+DELETE http://localhost:3000/api/geotags/test3

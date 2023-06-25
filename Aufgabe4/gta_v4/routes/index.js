@@ -87,13 +87,13 @@ router.get('/', (req, res) => {
  */
 
 router.get('/api/geotags', (req, res) => {
-  let filter = req.query.filter; // Nehmen Sie den Filter-Parameter aus der URL
+  //let filter = req.query.filter; // Nehmen Sie den Filter-Parameter aus der URL
 
   // Führen Sie die erforderlichen Aktionen aus, um GeoTags basierend auf dem Filter zu suchen
-  let filteredGeoTags = tagStorage.searchNearbyGeoTags(48,98770, 8,38080, 1000, "Castle");
+  //let filteredGeoTags = tagStorage.searchNearbyGeoTags(0, 0, Infinity, filter);
 
   // Senden Sie die Antwort mit den gefundenen GeoTags als JSON-Array
-  res.json(filteredGeoTags);
+  res.json(tagStorage.tagList);
 });
 
 
