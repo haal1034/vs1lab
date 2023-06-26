@@ -185,8 +185,9 @@ router.delete('/api/geotags/:name', (req, res) => {
   const name = req.params.name; 
   const geoTagIndex = tagStorage.tagList.findIndex(tag => tag.name === name);
   if (geoTagIndex !== -1) {
+    soontobedeleted = tagStorage.tagList[geoTagIndex];
     tagStorage.tagList.splice(geoTagIndex, 1);
-    res.sendStatus(204);
+    res.json(soontobedeleted);
   } else {
     res.status(404).json({ error: 'GeoTag not found' });
   }
