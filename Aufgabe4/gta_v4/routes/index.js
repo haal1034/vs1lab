@@ -93,8 +93,10 @@ router.get('/api/geotags', (req, res) => {
     const longitude = req.query.longitude;
 
     if(name !== undefined) {
-    filteredGeoTags = tagStorage.searchNearbyGeoTags(latitude, longitude, 100000, name);   
-    } else {
+    filteredGeoTags = tagStorage.searchNearbyGeoTags(49.013790, 8.404435, 10000000000, name);   
+    }else if(latitude!==undefined||longitude!==undefined){
+      filteredGeoTags = tagStorage.searchNearbyGeoTags(latitude, longitude, 100000, name);   
+    }else {
       filteredGeoTags = tagStorage.tagList;
     }   
   res.json(filteredGeoTags);
@@ -184,10 +186,12 @@ router.put('/api/geotags/:name', (req, res) => {
 router.delete('/api/geotags/:name', (req, res) => {
   const name = req.params.name; 
   const geoTagIndex = tagStorage.tagList.findIndex(tag => tag.name === name);
+  const geoTag = tagStorage.tagList.find(tag => tag.name === name);
+  
   if (geoTagIndex !== -1) {
     soontobedeleted = tagStorage.tagList[geoTagIndex];
     tagStorage.tagList.splice(geoTagIndex, 1);
-    res.json(soontobedeleted);
+    res.status(204).json(soontobedeleted);
   } else {
     res.status(404).json({ error: 'GeoTag not found' });
   }
